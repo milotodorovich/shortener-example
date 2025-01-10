@@ -6,6 +6,7 @@
    [muuntaja.core :as m]
    [reitit.ring.middleware.muuntaja :as muuntaja]
    [shortener.db :as db]
+   [shortener.env :as env]
    [shortener.slug :as slug]
    [clojure.java.io :as io])
   (:gen-class))
@@ -42,7 +43,7 @@
             :middleware [muuntaja/format-middleware]}})))
 
 (defn start []
-  (ring-jetty/run-jetty #'app {:port 3001
+  (ring-jetty/run-jetty #'app {:port (or (env/env :PORT) 3001)
                                :join? false}))
 
 (defn -main []
