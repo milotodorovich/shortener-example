@@ -3,7 +3,8 @@
 
 (def version (format "1.2.%s" (b/git-count-revs nil)))
 (def class-dir "target/classes")
-(def uber-file (format "target/app-%s-standalone.jar"  version))
+#_(def uber-file (format "target/app-%s-standalone.jar"  version))
+(def uber-file (format "target/app-standalone.jar"))
 
 ;; delay to defer side effects (artifact downloads)
 (def basis (delay (b/create-basis {:project "deps.edn"})))
