@@ -1,5 +1,8 @@
 .clj-kondo/
 .cpcache/
 .shadow-cljs/
+.DS_Store
 node_modules/
-resources/public/assets/
+resources/public/assets/css
+resources/public/assets/js
+target/

@@ -7,7 +7,8 @@
    [reitit.ring.middleware.muuntaja :as muuntaja]
    [shortener.db :as db]
    [shortener.slug :as slug]
-   [clojure.java.io :as io]))
+   [clojure.java.io :as io])
+  (:gen-class))
 
 (defn index []
   (slurp (io/resource "public/index.html")))
@@ -43,6 +44,10 @@
 (defn start []
   (ring-jetty/run-jetty #'app {:port 3001
                                :join? false}))
+
+(defn -main []
+  (println "Starting app...")
+  (start))
 
 (comment
   (def server (start))
