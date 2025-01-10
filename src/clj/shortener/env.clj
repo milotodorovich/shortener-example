@@ -8,7 +8,8 @@
                {}))
 
 (defn env [k]
-  (k envvars))
+  (or (k envvars)
+      (System/getenv (name k))))
 
 (comment
   (in-ns 'shortener.env)
