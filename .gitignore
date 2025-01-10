@@ -2,4 +2,4 @@
 .cpcache/
 .shadow-cljs/
 node_modules/
-resources/public/assets/js/
+resources/public/assets/

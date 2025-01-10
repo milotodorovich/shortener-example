@@ -15,14 +15,17 @@
                              response (.json _response)
                              data (js->clj response :keywordize-keys true)]
                        (set-state assoc :slug (:slug data))))
-        redirect-link (str (:-origin js/location) "/" (:slug state))]
-    (d/div
-     (if (:slug state)
-       (d/div (d/a {:href redirect-link} redirect-link))
-       (d/div
-        (d/input {:value (:url state)
-                  :on-change #(set-state assoc :url (.. % -target -value))})
-        (d/button {:on-click #(fetch-slug)} "Shorten"))))))
+        redirect-link (str (.-origin js/location) "/" (:slug state))]
+    (d/div {:class-name "bg-pink-100 grid place-items-center h-screen"}
+           (if (:slug state)
+             (d/div (d/a {:href redirect-link} redirect-link))
+             (d/div
+              (d/input {:value (:url state)
+                        :on-change #(set-state assoc :url (.. % -target -value))
+                        :className "form-control border border-solid border-gray-600"
+                        :placeholder "Enter URL"})
+              (d/button {:on-click #(fetch-slug)
+                         :className "border-2 rounded px-2 uppercase"} "Shorten"))))))
 
 ;; start your app with your favorite React renderer
 (defonce root (rdom/createRoot (js/document.getElementById "app")))
