@@ -43,8 +43,10 @@
             :middleware [muuntaja/format-middleware]}})))
 
 (defn start []
-  (ring-jetty/run-jetty #'app {:port (or (env/env :PORT) 3001)
-                               :join? false}))
+  (let [port (or (Integer/parseInt (env/env :PORT)) 3001)]
+    (println "Using port" port)
+    (ring-jetty/run-jetty #'app {:port port
+                                 :join? false})))
 
 (defn -main []
   (println "Starting app...")
